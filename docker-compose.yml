@@ -1,20 +1,19 @@
 services:
-  app:
+  php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel_app
+    container_name: php
     ports:
-      - "8000:8000"
+      - "8000:80"
     volumes:
       - .:/var/www/html
-    working_dir: /var/www/html
-    tty: true  
-    stdin_open: true
+    depends on:
+      - mysql
 
-  db:
+  mysql:
     image: mysql:8.0
-    container_name: mysql_db
+    container_name: mysql
     ports:
       - "3306:3306"
     environment:
