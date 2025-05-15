@@ -3,13 +3,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+    - mysql
     container_name: php
     ports:
       - "8000:80"
     volumes:
       - .:/var/www/html
-    depends on:
-      - mysql
+    
 
   mysql:
     image: mysql:8.0
